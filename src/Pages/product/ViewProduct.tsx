@@ -24,6 +24,8 @@ const ViewProduct = () => {
         }
     });
 
+    if (isPending) return <p className="loading loading-ring loading-lg">Loading...</p>;
+
     return (
         <main>
             <button
@@ -42,7 +44,7 @@ const ViewProduct = () => {
                     alt={data?.title}
                 />
                 <div className="info px-4 md:w-3/5">
-                <p className="badge-primary badge-outline rounded-none w-fit mt-4">
+                    <p className="badge-primary badge-outline rounded-none w-fit mt-4">
                         {data?.category}
                     </p>
                     <h1 className="text-3xl font-bold text-left">
@@ -61,12 +63,12 @@ const ViewProduct = () => {
 
                     </p>
 
-                 
 
-                    <button 
-                    onClick={handleNotification}
-                    
-                    className="btn btn-primary mt-4">Add to Cart</button>
+
+                    <button
+                        onClick={handleNotification}
+
+                        className="btn btn-primary mt-4">Add to Cart</button>
 
                 </div>
 

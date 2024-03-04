@@ -9,8 +9,8 @@ const ListProducts = () => {
             return response.json()
         }
     })
-    if (isPending) return <div>Loading...</div>
-    if (error) return <div>Error: {error.message}</div>
+    if (isPending) return <div className="loading loading-ring loading-lg">Loading...</div>
+    if (error) return <div>Error: An Error occurred</div>
     return (
         <div className="grid md:grid-cols-4 ">
             {data.map((product: any) => (
