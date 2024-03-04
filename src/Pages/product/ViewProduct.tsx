@@ -1,9 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { requestPermission, showNotification } from "../../notification";
 
 const ViewProduct = () => {
     const { id } = useParams();
+
+    const handleNotification = async () => {
+        try {
+            await requestPermission();
+            await showNotification("Product Added", {
+                body: "Product has been added to the cart",
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
     const { data, isPending, error } = useQuery({
         queryKey: ['productid', id],
         queryFn: async () => {
@@ -51,7 +63,10 @@ const ViewProduct = () => {
 
                  
 
-                    <button className="btn btn-primary mt-4">Add to Cart</button>
+                    <button 
+                    onClick={handleNotification}
+                    
+                    className="btn btn-primary mt-4">Add to Cart</button>
 
                 </div>
 
